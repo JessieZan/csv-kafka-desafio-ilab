@@ -2,13 +2,11 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.model.Producer;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.utilitarios.S3Util;
@@ -32,6 +30,7 @@ public class MainController {
          
         try {
             S3Util.uploadFile(fileName, multipart.getInputStream());
+
             message = "Your file has been uploaded successfully!";
         } catch (Exception ex) {
             message = "Error uploading file: " + ex.getMessage();
@@ -42,7 +41,18 @@ public class MainController {
         return "message";              
     }
 
-    @Controller
+    @RequiredArgsConstructor
+    @RestController
+    @RequestMapping(value = "/kafka")
+    public class KafkaController {
+        private final Producer topicProducer;
+        @GetMapping (value = "/send")
+        public void send(@RequestParam("message") String message){
+            topicProducer.send(message);
+        }
+    }
+
+    /**@Controller
     @RequestMapping(value = "/kafka")
     public class KafkaController {
 
@@ -57,6 +67,6 @@ public class MainController {
         public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
             this.producer.sendMessage(message);
         }
-    }
+    }**/
 
 }
