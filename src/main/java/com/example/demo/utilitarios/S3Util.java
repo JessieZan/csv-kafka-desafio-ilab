@@ -14,42 +14,20 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
  
 public class S3Util {
-    private static final String BUCKET = "group-3-bucket";
-   
+	 private static final String BUCKET = "group-3-bucket";//colocar nome do nosso bucket
      
-    public static void uploadFile(String fileName, InputStream inputStream)
-            throws S3Exception, AwsServiceException, SdkClientException, IOException {
-        AwsCredentialsProvider credentialsProvider = new AwsCredentialsProvider() {
-      	  @Override
-      	  public AwsCredentials resolveCredentials() {
-      	      return new AwsCredentials() {
-      	          @Override
-      	          public String accessKeyId() {
-      	              return System.getenv("AWS_ACCESS_KEY");
-      	          }
+	    public static void uploadFile(String fileName, InputStream inputStream)
+	            throws S3Exception, AwsServiceException, SdkClientException, IOException {
+	        S3Client client = S3Client.builder().build();
+	         
+	        PutObjectRequest request = PutObjectRequest.builder()
+	                            .bucket(BUCKET)
+	                            .key(fileName)// colocar nome do nosso arquivo
+	                            .acl("public-read")
+	                            .build();
 
-      	          @Override
-      	          public String secretAccessKey() {
-      	              return System.getenv("AWS_SECRET_KEY");
-      	          }
-      	      };
-      	  }
-      	};
-      	
-        S3Client client = S3Client.builder()                            
-                .region(Region.US_EAST_1)
-                .credentialsProvider(credentialsProvider)
-                .build();
-
-         
-        PutObjectRequest request = PutObjectRequest.builder()
-                            .bucket(BUCKET)
-                            .key(fileName)
-                            .acl("public-read")
-                            .build();
-         
-        client.putObject(request,
-                RequestBody.fromInputStream(inputStream, inputStream.available()));
+	        client.putObject(request,
+	                RequestBody.fromInputStream(inputStream, inputStream.available()));
     }
     /*
     // Caso queira executar algumas lógicas personalizadas que dependam da existência do arquivo carregado,
