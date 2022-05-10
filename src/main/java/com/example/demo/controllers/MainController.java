@@ -34,24 +34,17 @@ public class MainController {
         System.out.println("filename: " + fileName);
          
         String message = "";
-        try {
-            message = "Your file has been uploaded successfully!";
-            KafkaService.sendMessage("mensagem",message);
-
-        } catch (Exception ex) {
-            message = "Error uploading file: " + ex.getMessage();
-            System.out.println(message);
-        }
 
         try {
             S3Util.uploadFile(fileName, multipart.getInputStream());
 
             message = "Your file has been uploaded successfully!";
+            KafkaService.sendMessage("nome",fileName);
         } catch (Exception ex) {
             message = "Error uploading file: " + ex.getMessage();
         }
          
-        model.addAttribute("message", message);
+        model.addAttribute("message", fileName);
 
         //KafkaService.sendMessage("mensagem",message);
 
