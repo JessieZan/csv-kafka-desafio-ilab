@@ -13,6 +13,7 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
+
 public class S3Util {
     private static final String BUCKET = "group-3-bucket";
 
@@ -52,6 +53,7 @@ public class S3Util {
         client.putObject(request,
                 RequestBody.fromInputStream(inputStream, inputStream.available()));
     }}
+
     /*
     // Caso queira executar algumas lógicas personalizadas que dependam da existência do arquivo carregado,
     S3Waiter waiter = client.waiter();
