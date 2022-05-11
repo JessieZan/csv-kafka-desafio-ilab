@@ -19,7 +19,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class DownloadFileS3 {
-    public static void main(String[] args) throws IOException {
+    public static void download(String[] args) throws IOException {
 	String bucketnAME = "group-3-bucket";
 	String keyName = "csv_projeto_grupo-3.csv";
 
