@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.Cliente;
-import com.example.services.IClienteService;
+import com.example.demo.services.IClienteService;
 
 @Controller
 public class ClienteController {
