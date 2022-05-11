@@ -24,8 +24,12 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
     @Override
-    public Cliente CriarCliente(Cliente cli) {
-        return dao.save(cli);
+    public boolean CriarCliente(Cliente cli) {
+        if(cli!=null) {
+        	dao.save(cli);
+        	return true;
+        }
+        return false;
     }
 
 

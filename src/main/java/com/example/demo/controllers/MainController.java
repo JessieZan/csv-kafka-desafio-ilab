@@ -19,9 +19,22 @@ public class MainController {
 
     @GetMapping("")
     public String viewHomePage() {
-        return "upload";
+        return "home";
     }
-
+   
+    @GetMapping("/upload")
+    public String viewUploadPage() {
+        return "Upload";
+    }
+    
+    @GetMapping("/pedidos")
+    public String viewOrdersPage() {
+        return "pedidos";
+    }
+    @GetMapping("/produtos")
+    public String viewProductsPage() {
+        return "produtos";
+    }
 
     @PostMapping("/upload")
     public String handleUploadForm(Model model, String description,
@@ -46,9 +59,9 @@ public class MainController {
         try {
             S3Util.uploadFile(fileName, multipart.getInputStream());
 
-            message = "Your file has been uploaded successfully!";
+            message = "upload do arquivo feito com sucesso!";
         } catch (Exception ex) {
-            message = "Error uploading file: " + ex.getMessage();
+            message = "Erro ao fazer upload do arquivo: " + ex.getMessage();
         }
          
         model.addAttribute("message", message);
