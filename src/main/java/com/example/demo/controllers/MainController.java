@@ -66,7 +66,7 @@ public class MainController {
          
         model.addAttribute("message", message);
 
-        //KafkaService.sendMessage("mensagem",message);
+        KafkaService.sendMessage("mensagem", fileName);
 
         return "message";              
     }
