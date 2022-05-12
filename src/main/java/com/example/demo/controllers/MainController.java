@@ -1,14 +1,17 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.model.Cliente;
 import com.example.demo.model.KafkaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.utilitarios.S3Util;
 
@@ -31,10 +34,7 @@ public class MainController {
     public String viewOrdersPage() {
         return "pedidos";
     }
-    @GetMapping("/produtos")
-    public String viewProductsPage() {
-        return "produtos";
-    }
+
 
     @PostMapping("/upload")
     public String handleUploadForm(Model model, String description,

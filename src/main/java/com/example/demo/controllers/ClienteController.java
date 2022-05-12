@@ -19,7 +19,6 @@ public class ClienteController {
     @Autowired
     private IClienteService service;
     
-    private ClienteDao dao; 
 
     @GetMapping("/clientes")
     public String listarTodos(ModelMap model) {
@@ -46,7 +45,7 @@ public class ClienteController {
     	Iterable <Cliente> clients =  service.listarTodos();
     	andView.addObject("clientes" ,clients);
         return andView;
-        //return "listaDeClientes";
+
     }
     
     
