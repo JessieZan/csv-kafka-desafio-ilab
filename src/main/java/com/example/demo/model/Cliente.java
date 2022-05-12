@@ -7,10 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "cliente")
 public class Cliente {
-
+	
 	@Id
 	@Column(name = "id", nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,15 @@ public class Cliente {
 
 	@Column(name = "nome", nullable = false, length = 50, unique = true)
 	private String nome;
+
+	
+	public Cliente(String nome) {
+		super();
+		this.nome = nome;
+	}
+	public Cliente() {
+		super();
+	}
 
 	public Integer getId() {
 		return id;

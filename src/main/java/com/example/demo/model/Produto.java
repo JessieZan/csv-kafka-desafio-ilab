@@ -1,4 +1,6 @@
 package com.example.demo.model;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +25,7 @@ public class Produto {
 	@Column(name = "valor")
 	private Double valor;
 	@Column(name = "data")
-	private String data;
+	private Timestamp data;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -37,6 +39,12 @@ public class Produto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 	public String getDescricao() {
 		return descricao;
 	}
@@ -49,10 +57,10 @@ public class Produto {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public String getData() {
+	public Timestamp getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Timestamp data) {
 		this.data = data;
 	}
 

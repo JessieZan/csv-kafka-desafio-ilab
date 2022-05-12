@@ -1,14 +1,17 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.model.Cliente;
 import com.example.demo.model.KafkaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.utilitarios.S3Util;
 
@@ -19,7 +22,17 @@ public class MainController {
 
     @GetMapping("")
     public String viewHomePage() {
-        return "upload";
+        return "home";
+    }
+   
+    @GetMapping("/upload")
+    public String viewUploadPage() {
+        return "Upload";
+    }
+    
+    @GetMapping("/pedidos")
+    public String viewOrdersPage() {
+        return "pedidos";
     }
 
 
@@ -46,9 +59,9 @@ public class MainController {
         try {
             S3Util.uploadFile(fileName, multipart.getInputStream());
 
-            message = "Your file has been uploaded successfully!";
+            message = "upload do arquivo feito com sucesso!";
         } catch (Exception ex) {
-            message = "Error uploading file: " + ex.getMessage();
+            message = "Erro ao fazer upload do arquivo: " + ex.getMessage();
         }
          
         model.addAttribute("message", message);
