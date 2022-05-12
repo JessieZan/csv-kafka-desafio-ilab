@@ -27,11 +27,6 @@ public class ClienteController {
         return "clientes";
     }
 
-    @GetMapping("/cliente")
-    public String viewClientPage(ModelMap model) {
-        return "cliente";
-    }
-
     @GetMapping("/cadastrarCliente")
     public String viewCadastroClientePage(ModelMap model) {
         return "cadastrarCliente";
@@ -42,6 +37,15 @@ public class ClienteController {
         ModelAndView andView = new ModelAndView("/listaDeClientes");
         Iterable<Cliente> clients = service.listarTodos();
         andView.addObject("clientes", clients);
+        return andView;
+
+    }
+
+    @GetMapping("/buscarCliente")
+    public ModelAndView viewClientesPage(ModelMap model) {
+        ModelAndView andView = new ModelAndView("/cliente");
+        Iterable<Cliente> cliente = service.listarTodos();
+        andView.addObject("clientes", cliente);
         return andView;
 
     }

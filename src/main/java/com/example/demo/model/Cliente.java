@@ -15,6 +15,10 @@ public class Cliente {
     @Column(name = "nome", nullable = false, length = 50, unique = true)
     private String nome;
 
+    public Cliente(Integer id, String nome){
+        this.id = id;
+        this.nome = nome;
+    }
 
     public Cliente(String nome) {
         super();
@@ -40,5 +44,7 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    
 
 }
