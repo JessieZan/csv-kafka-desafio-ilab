@@ -2,11 +2,16 @@ package com.example.demo.services;
 
 import com.example.demo.dao.ClienteDao;
 import com.example.demo.model.Cliente;
+import com.google.gson.Gson;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import aj.org.objectweb.asm.Type;
 import redis.clients.jedis.Jedis;
 
 import java.io.Console;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,31 +27,29 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Override
     public List<Cliente> listarTodos() {
-        String tamanhoArray = redis.read("Ultimo_ID");
         var jedis = new Jedis("http://localhost:6379");
-        ArrayList<Cliente> clientesRedis = new ArrayList<>();
-        
-        for(int k=1; k <= Integer.parseInt(tamanhoArray) ;k++) {
-            // List<Cliente> clientesBuscarRedis = jedis.hgetAll("cliente"+ k);
-            Map<String, String> fields = jedis.hgetAll("cliente"+k);
-            System.out.println(fields);
-            // clientesRedis.add(fields);
-        }
-
-        Integer id = 1;
 
         List<Cliente> clientes = (List<Cliente>) dao.findAll();
 
-        var redis = new RedisService();
+        Integer id = 1;
+        ArrayList<Cliente> lista = new ArrayList<Cliente>();
+
         for (Cliente cliente : clientes) {
-            jedis.hset("cliente"+ id, "id", cliente.getId().toString());
-            jedis.hset("cliente"+ id, "nome", cliente.getNome());
-            String key = id.toString();
-            redis.write("Ultimo_ID", key, 30);
+            var key = "cliente"+id;
+            var redisService = new RedisService();
+            redisService.write(key, cliente.getId().toString() + "-"+ cliente.getNome(), 30);
+            var valor = redisService.read(key);
+            var valorredis = valor.split("-");
+
+            Cliente clienteRedis = new Cliente(Integer.parseInt(valorredis[0]), valorredis[1]);
+            lista.add(clienteRedis);
+            
             id++;
         }
+        // var listaa = new Gson();
+        // System.out.println(listaa.toJson(lista));
        
-        return clientes;
+        return lista;
     }
 
     @Override
