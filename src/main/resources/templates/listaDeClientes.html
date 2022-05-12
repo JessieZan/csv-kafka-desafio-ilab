@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="ISO-8859-1" />
+<head>
+    <meta charset="ISO-8859-1"/>
     <title>Data - Lista de clientes</title>
-    <link href="./style.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet"/>
     <style type="text/css">
       body {
         display: flex;
@@ -30,20 +30,21 @@
 
       }
 
-    </style>
-  </head>
 
-  <body>
-    <div>
-      <button><a href="/">Home</a></button>
-      <button><a href="/clientes">Clientes</a></button>
-    </div>
-    <h2>Lista de clientes</h2>
+    </style>
+</head>
+
+<body>
+<div>
+    <button><a href="/">Home</a></button>
+    <button><a href="/clientes">Clientes</a></button>
+</div>
+<h2>Lista de clientes</h2>
 <div class="container">
 
     <div class="header_table">
-      <h3>ID</h3>
-      <h3>Nome</h3>
+        <h3>ID</h3>
+        <h3>Nome</h3>
     </div>
     <div class="row" th:each="cliente : ${clientes}">
 
@@ -52,7 +53,7 @@
     </div>
 
 
-   </div>
-  </body>
+</div>
+</body>
 
 </html>

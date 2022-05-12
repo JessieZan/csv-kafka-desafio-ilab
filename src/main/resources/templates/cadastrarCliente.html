@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html 	xmlns:th="http://www.thymeleaf.org"
-		xmlns:data="http://www.thymeleaf.org/extras/data"
-		xmlns:brewer="http://brewer.algaworks.com">
+<html
+>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Cadastro de cliente</title>
-	<style>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cadastro de cliente</title>
+    <style>
 	body,form-group{
 	display:flex;
 	flex-direction:column;
@@ -18,29 +17,30 @@
 	display:flex;
 	}
 
-	</style>
-</head>
-	<div>
-      <button><a href="/">Home</a></button>
-      <button><a href="/clientes">Clientes</a></button>
-	</div>
-	  <h1>Cadastro de cliente</h1>
-	<section layout:fragment="conteudo">
-	<div class="page-header">
-		<div class="container-fluid">
-			<div class="row">
-			
-			</div>
-		</div>
-	</div>
 
-	<div>
-		<form action="/cadastrarCliente" method="post">		
-					<label for="nomeCliente">Nome</label>
-					<input type="text" id="nomeCliente" name="nomeCliente" required/>
-					<button type="submit">Salvar</button>									
-		</form>
-	</div>
+    </style>
+</head>
+<div>
+    <button><a href="/">Home</a></button>
+    <button><a href="/clientes">Clientes</a></button>
+</div>
+<h1>Cadastro de cliente</h1>
+<section layout:fragment="conteudo">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <form action="/cadastrarCliente" method="post">
+            <label for="nomeCliente">Nome</label>
+            <input type="text" id="nomeCliente" name="nomeCliente" required/>
+            <button type="submit">Salvar</button>
+        </form>
+    </div>
 </section>
 
 
