@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="ISO-8859-1" />
+<head>
+    <meta charset="ISO-8859-1"/>
     <title>Data - Lista de produtos</title>
-    <link href="./style.css" rel="stylesheet" />
+    <link href="./style.css" rel="stylesheet"/>
     <style type="text/css">
       body {
         display: flex;
@@ -30,34 +30,35 @@
 
       }
 
-    </style>
-  </head>
 
-  <body>
-    <div>
-      <button><a href="/">Home</a></button>
-    </div>
-    <h2>Lista de Produtos</h2>
+    </style>
+</head>
+
+<body>
+<div>
+    <button><a href="/">Home</a></button>
+</div>
+<h2>Lista de Produtos</h2>
 <div class="container">
 
     <div class="header_table">
-      <h3>Codigo</h3>
-      <h3>Nome</h3>
-      <h3>DescriÃ§Ã£o</h3>
-      <h3>Quantidade</h3>
-      <h3>Valor</h3>
-                        
+        <h3>Codigo</h3>
+        <h3>Nome</h3>
+        <h3>Descrição</h3>
+        <h3>Quantidade</h3>
+        <h3>Valor</h3>
+
     </div>
     <div class="row" th:each="produto : ${produtos}">
         <h3 class="result" id="codigo" th:text="${produto.codigo}"></h3>
         <h3 class="result" id="nome" th:text="${produto.nome}"></h3>
         <h3 class="result" id="descricao" th:text="${produto.descricao}"></h3>
-		<h3 class="result" id="quantidade" th:text="${produto.quantidade}"></h3>
+        <h3 class="result" id="quantidade" th:text="${produto.quantidade}"></h3>
         <h3 class="result" id="valor" th:text="${produto.valor}"></h3>
     </div>
 
 
-   </div>
-  </body>
+</div>
+</body>
 
 </html>

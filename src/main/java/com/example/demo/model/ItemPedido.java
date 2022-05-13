@@ -1,73 +1,66 @@
 package com.example.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "item_pedido")
 public class ItemPedido {
-	@Id
-	@Column(name = "id", nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	@Column(name="quantidade")
-	private Integer quantidade;
-	@Column(name="valor")
-	private Double  valor;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_pedido")
-	private Pedido  pedido;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_produto")
-	private Produto produto;
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "quantidade")
+    private Integer quantidade;
+    @Column(name = "valor")
+    private Double valor;
 
-	public Integer getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "id_pedido")
+    private Pedido pedido;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Produto produto;
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Double getValor() {
-		return valor;
-	}
+    public Integer getQuantidade() {
+        return quantidade;
+    }
 
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
 
-	public Pedido getPedido() {
-		return pedido;
-	}
+    public Double getValor() {
+        return valor;
+    }
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
 
-	public Produto getProduto() {
-		return produto;
-	}
+    public Pedido getPedido() {
+        return pedido;
+    }
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-	
-	
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+
 }

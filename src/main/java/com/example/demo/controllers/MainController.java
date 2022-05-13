@@ -24,6 +24,7 @@ import com.example.demo.services.IClienteService;
 import com.example.demo.services.IProdutoService;
 import com.example.demo.utilitarios.S3Util;
 
+
 @Controller
 public class MainController {
     @Autowired
@@ -42,13 +43,13 @@ public class MainController {
     public String viewHomePage() {
         return "home";
     }
-   
+
     @GetMapping("/upload")
     public String viewUploadPage() {
     	System.out.println("testeee");
         return "Upload";
     }
-    
+
     @GetMapping("/pedidos")
     public ModelAndView viewOrdersPage() {
     	ModelAndView andView = new ModelAndView("/fazerPedido");
@@ -105,18 +106,18 @@ public class MainController {
 
     @PostMapping("/upload")
     public String handleUploadForm(Model model, String description,
-            @RequestParam("file") MultipartFile multipart) throws ExecutionException, InterruptedException {
+                                   @RequestParam("file") MultipartFile multipart) throws ExecutionException, InterruptedException {
 
 
         String fileName = multipart.getOriginalFilename();
-         
+
         System.out.println("Description: " + description);
         System.out.println("filename: " + fileName);
-         
+
         String message = "";
         try {
             message = "Your file has been uploaded successfully!";
-            KafkaService.sendMessage("mensagem",message);
+            KafkaService.sendMessage("mensagem", message);
 
         } catch (Exception ex) {
             message = "Error uploading file: " + ex.getMessage();
@@ -130,12 +131,12 @@ public class MainController {
         } catch (Exception ex) {
             message = "Erro ao fazer upload do arquivo: " + ex.getMessage();
         }
-         
+
         model.addAttribute("message", message);
 
-        //KafkaService.sendMessage("mensagem",message);
+        KafkaService.sendMessage("mensagem", fileName);
 
-        return "message";              
+        return "message";
     }
 
 
