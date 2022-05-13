@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1"/>
@@ -46,7 +46,7 @@
         <h3>ID</h3>
         <h3>Nome</h3>
     </div>
-    <div class="row" th:each="cliente : ${clientes}">
+    <div class="row" th:if="cliente.id !== null">
 
         <h3 class="result" id="id" th:text="${cliente.id}"></h3>
         <h3 class="result" th:text="${cliente.nome}"></h3>
@@ -56,4 +56,4 @@
 </div>
 </body>
 
-</html>
+</html> -->
