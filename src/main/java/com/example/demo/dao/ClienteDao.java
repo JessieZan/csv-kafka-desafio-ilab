@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClienteDao extends CrudRepository<Cliente, Integer> {
-
+    public Cliente findByNome(String nome);
 }

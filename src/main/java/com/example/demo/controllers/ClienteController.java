@@ -41,16 +41,6 @@ public class ClienteController {
 
     }
 
-    @GetMapping("/buscarCliente")
-    public ModelAndView viewClientesPage(ModelMap model) {
-        ModelAndView andView = new ModelAndView("/cliente");
-        Iterable<Cliente> cliente = service.listarTodos();
-        andView.addObject("clientes", cliente);
-        return andView;
-
-    }
-
-
     @PostMapping("/cadastrarCliente")
     public String postClient(String nomeCliente, Model model) {
         String message = "";

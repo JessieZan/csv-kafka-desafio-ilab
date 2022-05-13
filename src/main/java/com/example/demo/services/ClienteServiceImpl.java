@@ -27,10 +27,8 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Override
     public List<Cliente> listarTodos() {
-        var jedis = new Jedis("http://localhost:6379");
-
         List<Cliente> clientes = (List<Cliente>) dao.findAll();
-
+        
         Integer id = 1;
         ArrayList<Cliente> lista = new ArrayList<Cliente>();
 
@@ -40,15 +38,12 @@ public class ClienteServiceImpl implements IClienteService {
             redisService.write(key, cliente.getId().toString() + "-"+ cliente.getNome(), 30);
             var valor = redisService.read(key);
             var valorredis = valor.split("-");
-
             Cliente clienteRedis = new Cliente(Integer.parseInt(valorredis[0]), valorredis[1]);
             lista.add(clienteRedis);
-            
             id++;
         }
         // var listaa = new Gson();
         // System.out.println(listaa.toJson(lista));
-       
         return lista;
     }
 
