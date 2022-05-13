@@ -35,7 +35,7 @@
 	</div>
 
 	<div>
-		<form action="/cadastrarCliente" method="post">		
+		<form action="/cadastrarCliente" method="post" th:object="$(cliente)">		
 					<label for="nomeCliente">Nome</label>
 					<input type="text" id="nomeCliente" name="nomeCliente" required/>
 					<button type="submit">Salvar</button>									

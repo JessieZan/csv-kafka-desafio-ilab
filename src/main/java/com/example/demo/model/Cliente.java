@@ -21,6 +21,11 @@ public class Cliente {
 	private String nome;
 
 	
+	public Cliente(Integer id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
 	public Cliente(String nome) {
 		super();
 		this.nome = nome;

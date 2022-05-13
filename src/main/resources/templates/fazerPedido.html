@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload - Bolinho de Java</title>
+  </head>
+  <style>
+  *{
+  	padding:0;
+  	margin:0;
+ 
+  }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .div-produtos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 500px;
+    }
+    label{
+    widht:700px;
+    margin-bottom:20px;
+    }
+    #clientes,#produtos{
+    padding:10px 30px;
+    margin-bottom:20px;
+    }
+    button{
+    margin-bottom:25px;
+    margin-top:15px;
+    }
+    input,select{
+    	width:200px;
+    	height:30px;
+    }
+    label{
+    	margin-bottom:50px;	
+    }
+    #produto1ID{
+    	margin-left:91px;
+    }
+    #clienteID{
+        margin-left:34px;
+    }
+    #enderecoEntrega{
+    	margin-left:66px;
+    }
+
+  </style>
+  <body>
+    <button><a href="/">Home</a></button>
+    <h1>Pedido</h1>
+	
+	<form action="/pedidos" method="post" >	
+	<div>	
+		<label for="clienteID">Digite o id do cliente a ser associado ao pedido:</label>
+		
+		<input type="number" id="clienteID" name="clienteID"  required />	
+		<select th:field="*{clientes}" >
+		<option value ="">lista de clientes</option>
+		  <option th:each="cliente : ${clientes}"
+		  th:value="${cliente.id}"
+		  th:text="${'id = '+ cliente.id + ' - ' + cliente.nome}"
+		  />
+		</select>
+	</div>
+		<div>
+			<label for="produto1ID">Digite o codigo do produto que deseja:</label>
+			
+			<input type="number" id="produto1ID" name="produto1ID" max="${produtos.length}"  required />	
+			<select  th:field="*{produtos}" >
+				<option value ="">Lista de produtos</option>
+				  <option th:each="produto : ${produtos}"
+				  th:value="${produto.codigo}"
+				  th:text="${'Codigo - ' + produto.codigo + ' - ' + produto.nome + ' - VALOR = R$' + produto.valor}"
+				  selected="selected"
+				  />
+			</select>
+				<label for="quantProduto1">quantidade:</label>
+				<input type="number" id="quantProduto1" name="quantProduto1" required />			
+		</div>
+		<div>
+			<label for="enderecoEntrega">Digite o endereço de entrega desse pedido:</label>
+			<input type="text" id="enderecoEntrega" name="enderecoEntrega" required />	
+		</div>	
+		<button type="submit">Fazer Pedido</button>		
+	</form>
+
+
+    </div>
+
+  </body>
+
